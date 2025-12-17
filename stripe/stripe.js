@@ -24,7 +24,7 @@ async function getConversionRate() {
       const paymentInfo = req.body;
       console.log(paymentInfo);
       const rate = await getConversionRate()
-      if (!paymentInfo.amount || !paymentInfo.custommer_email) {
+      if (!paymentInfo.amount || !paymentInfo.customer_email) {
         return res.status(400).send({ message: "Price and email are required" });
       }
 
@@ -41,13 +41,13 @@ async function getConversionRate() {
               currency: "usd",
               unit_amount: amount,
               product_data: {
-              name: paymentInfo.mealName || "Meal Order", 
+              name: paymentInfo.foodName || "Meal Order", 
               },
             },
             quantity: 1,
           },
         ],
-        customer_email: paymentInfo.custommer_email, // correct spelling
+        customer_email: paymentInfo.customer_email, // correct spelling
         mode: "payment",
         metadata: {
           parcelId: paymentInfo.mealId,
